@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Riddle me this</title>
+  </head>
+  <body>
+    <style>
+      #riddle {
+        text-align: center;
+        font-size: 50px;
+        color: brown;
+      }
+
+      #message {
+        text-align: center;
+        font-size: 50px;
+        color: teal;
+      }
+
+      @media (max-width: 600px) {
+        #riddle {
+          font-size: 20px;
+        }
+
+        #message {
+          font-size: 20px;
+        }
+      }
+    </style>
+
+    <p id="riddle">"Forward I am heavy, but backward I am not. What am I?"</p>
+    <p id="message"></p>
+
+    <script>
+      const clicked = [];
+      const secretCode = "ton";
+      const riddle = document.getElementById("riddle");
+      const message = document.getElementById("message");
+
+      window.addEventListener("keyup", (e) => {
+        clicked.push(e.key);
+        console.log(clicked);
+        clicked.splice(
+          -secretCode.length - 1,
+          clicked.length - secretCode.length
+        );
+        if (clicked.join("") === secretCode) {
+          riddle.style.display = "none";
+          message.textContent = '"Well done, indeed!"';
+        }
+      });
+    </script>
+  </body>
+</html>
